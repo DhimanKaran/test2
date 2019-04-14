@@ -27,6 +27,8 @@ class ToDoDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("hello world")
+        
         taskTitleLbl.text = toDoItem.name
         
         taskDetailsTxtVw.text = toDoItem.details
