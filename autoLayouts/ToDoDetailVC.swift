@@ -59,6 +59,30 @@ class ToDoDetailVC: UIViewController {
 
     @IBAction func taskDidComplete(_ sender: Any) {
         
+        let alert = UIAlertController(title: "confirm", message: "Are you sure you want to complete this task", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            
+            alert.dismiss(animated: true, completion: nil)
+            
+        }
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            
+            self.completeTask(alert: alert)
+            
+        }
+        
+        alert.addAction(cancelAction)
+        
+        alert.addAction(okAction)
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func completeTask(alert: UIAlertController) {
+        
         toDoItem.isComplete = true
         
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
@@ -68,14 +92,5 @@ class ToDoDetailVC: UIViewController {
         disableButton()
         
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
