@@ -22,16 +22,16 @@ class ToDoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var toDoItems: [ToDoItem] {
         
-        do {
-            
-            return try context.fetch(ToDoItem.fetchRequest())
-            
-        }
-        catch {
-            
-            print("Couldn't fetch data")
-            
-        }
+//        do {
+//
+//            return try context.fetch(ToDoItem.fetchRequest())
+//
+//        }
+//        catch {
+//
+//            print("Couldn't fetch data")
+//
+//        }
         
         return [ToDoItem]()
         
@@ -163,7 +163,7 @@ class ToDoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             let toDoItem = self.toDoItems[indexPath.row]
             
-            self.context.delete(toDoItem)
+//            self.context.delete(toDoItem)
             
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-/*
+
 struct ToDoItem {
     
     var name: String
@@ -35,4 +35,4 @@ struct ToDoItem {
     }
     
 }
-*/
+

@@ -192,19 +192,76 @@ class AddTaskVC: UIViewController {
 
     @IBAction func addTaskDidTouch(_ sender: Any) {
         
-        guard let taskName = taskNameTxtField.text,
-        !taskName.isEmpty else {
+        let validation = Validation()
+        
+        //let task = try? validation.validateText(text: taskNameTxtField.text, minLength: 4, maxLength: 10)
+        
+        var taskName: String = ""
+        
+        do{
             
-            reportError(title: "Invalid Task Name", message: "Task Name is Required")
+            taskName = try validation.validateText(text: taskNameTxtField.text, minLength: 4, maxLength: 10)
+            
+        }
+        catch ValidationError.Empty {
+            
+            reportError(title: "Task name empty", message: "Task name field is required")
             
             return
+            
+        }
+        catch ValidationError.Short {
+            
+            reportError(title: "Task name short", message: "Please enter a task name that is between 4 and 10 characters long")
+            
+            return
+            
+        }
+        catch ValidationError.Long {
+            
+            reportError(title: "Task name to long", message: "Please enter a task name that is between 4 and 10 characters long")
+            
+            return
+            
+        }
+        catch {
+            
+            reportError(title: "Task name invalid", message: "Please check the task name you have entered")
+            
+            return
+            
         }
         
-        if taskDetailsTxtVw.text.isEmpty {
+        var taskDetail: String = ""
+        
+        do {
             
-            reportError(title: "Invalid Task Details", message: "Task Details are required")
+            taskDetail = try validation.validateText(text: taskDetailsTxtVw.text, minLength: 8, maxLength: 20)
+            
+        }
+        catch ValidationError.Empty {
+            
+            reportError(title: "Task detail empty", message: "Task detail field is required")
             
             return
+            
+        }
+        catch ValidationError.Short {
+            
+            reportError(title: "Task detail short", message: "Please enter a task name that is between 8 and 20 characters long")
+            
+            return
+            
+        }
+        catch ValidationError.Long {
+            
+            reportError(title: "Task name to long", message: "Please enter a task name that is between 8 and 20 characters long")
+            
+        }
+        catch {
+            
+            reportError(title: "Task detail invalid", message: "Please check the task detail you have entered")
+            
         }
         
         let taskDetails: String = taskDetailsTxtVw.text
@@ -219,25 +276,25 @@ class AddTaskVC: UIViewController {
             
         }
         
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        let toDoItem = ToDoItem(context: context)
-        
-        toDoItem.name = taskName
-        
-        toDoItem.details = taskDetails
-        
-        toDoItem.completionDate = completionDate
-        
-        toDoItem.isComplete = false
-        
-        toDoItem.startDate = Date()
-        
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//
+//        let toDoItem = ToDoItem(context: context)
+//
+//        toDoItem.name = taskName
+//
+//        toDoItem.details = taskDetails
+//
+//        toDoItem.completionDate = completionDate
+//
+//        toDoItem.isComplete = false
+//
+//        toDoItem.startDate = Date()
+//
+//        (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
         //let toDoItem = ToDoItem(name: taskName, details: taskDetails, completionDate: completionDate)
         
-        delegate?.update()
+//        delegate?.update()
         
 //        let toDoDict: [String: ToDoItem] = ["Task": toDoItem]
         
