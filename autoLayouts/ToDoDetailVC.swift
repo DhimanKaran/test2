@@ -24,6 +24,8 @@ class ToDoDetailVC: UIViewController {
     
     weak var delegate: ToDoListDelegate?
     
+    var message: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
