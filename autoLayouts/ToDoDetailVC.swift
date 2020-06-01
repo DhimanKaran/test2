@@ -23,6 +23,8 @@ class ToDoDetailVC: UIViewController {
     var toDoIndex: Int!
     
     weak var delegate: ToDoListDelegate?
+    ///
+    ///
     
     override func viewDidLoad() {
         super.viewDidLoad()
