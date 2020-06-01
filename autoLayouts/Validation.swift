@@ -18,6 +18,8 @@ enum ValidationError: Error {
     
 }
 
+//karan
+
 class Validation {
     
     func validateText(text: String?, minLength: Int, maxLength: Int) throws -> String {
