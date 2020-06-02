@@ -40,6 +40,8 @@ class AddTaskVC: UIViewController {
         
     }()
     
+    var message: String = "message"
+    
     let toolBarDone = UIToolbar.init()
     
     var activeTxtField: UITextField?
